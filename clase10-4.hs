@@ -20,3 +20,16 @@ modulo x | x <= 0 = -x
 
 distanciaManhattan :: (Float , Float, Float) -> (Float , Float, Float) -> Float
 distanciaManhattan (x1, x2, x3) (y1, y2, y3) = modulo (x1 - y1) + modulo (x2 - y2) + modulo (x3 - y3)
+
+estanRelacionados :: Int -> Int -> Bool
+estanRelacionados a b = mod (a*a) (a*b) == 0
+
+sumarMultiplos :: (Int, Int, Int) -> Int -> Int
+sumarMultiplos (a, b, c) n | mod a n == 0 && mod b n == 0 && mod c n == 0 = a + b + c
+                           | mod a n == 0 && mod b n == 0 = a + b
+                           | mod a n == 0 && mod c n == 0 = a + c
+                           | mod b n == 0 && mod c n == 0 = b + c
+                           | mod a n == 0 = a
+                           | mod b n == 0 = b
+                           | mod c n == 0 = c
+                           | otherwise = 0
