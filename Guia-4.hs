@@ -48,28 +48,29 @@ iesimoDigito n m | m < cantDigitos(n) = iesimoDigito(div n 10) m
                  | otherwise = mod n 10
 -------------
 
---  Ej 9  -- (no anda para casos como el 1021)
-potenciaDeN :: Int -> Int -> Int
-potenciaDeN n m | m == 0 = 1
-                | otherwise = n * potenciaDeN n (m-1)
-
+--  Ej 9  --
 esCapicua :: Int -> Bool
-esCapicua n | cantDigitos n == 1 = True
-            | iesimoDigito n 1 - mod n 10 == 0 = --veo si son iguales el primer y el último dígito
-            esCapicua (div (mod n (potenciaDeN 10 (cantDigitos(n) - 1))) 10)
+esCapicua n | n < 10 = True
+            | comparacionDigitos n (cantDigitos n) == comparacionDigitos n ((cantDigitos n) - 1) = True
             | otherwise = False
+
+comparacionDigitos :: Int -> Int -> Bool
+comparacionDigitos n pos | pos == 1 && mod n 10 == div n 10 = True
+                         | iesimoDigito n pos == iesimoDigito n (cantDigitos (n) - pos + 1) = True --evalúa por izquierda y por derecha
+                         | otherwise = False
+
 -------------
 
 --  Ej 10  --
 -- a) (2^n+1) - 1
 f1 :: Int -> Int
 f1 n | n == 0 = 1
-     | otherwise = potenciaDeN 2 n + f1 (n-1)
+     | otherwise =  2 ^ n + f1 (n-1)
 
 -- b) ((q^n+1) - 1) / (q - 1)
 f2 :: Int -> Int -> Int
 f2 n q | n == 0 = 1
-       | otherwise = potenciaDeN q n + f2 (n-1) q
+       | otherwise =  q ^ n + f2 (n-1) q
 
 -- c) ((q^2n+1) - 1) / (q - 1)
 f3 :: Int -> Int -> Int
@@ -86,4 +87,61 @@ factorial n | n == 0 = 1
 
 eAprox :: Int -> Float
 eAprox n | n == 0 = 1
-         | otherwise = 1 / (fromIntegral (factorial (n))) + eAprox (n-1) -- fromIntegral es una función propia de Haskell
+         | otherwise = 1 / (fromIntegral (factorial (n))) + eAprox (n-1) -- fromIntegral es una función ya definida de Haskell
+
+--  Ej 12  --
+sucesionRaizDe2 :: Int -> Float
+sucesionRaizDe2 n | n == 1 = 2
+                  | otherwise = 2 + 1 / sucesionRaizDe2 (n-1)
+
+raizDe2Aprox :: Int -> Float
+raizDe2Aprox n | n == 0 = 0
+               | n == 1 = 1
+               | otherwise = sucesionRaizDe2 (n) - 1
+-------------
+
+--  Ej 13  --
+sumaDoble :: Int -> Int -> Int
+sumaDoble n m | n == 0 = 0
+              | otherwise = sumaInterna n m + sumaInterna (n-1) m
+
+sumaInterna :: Int -> Int -> Int
+sumaInterna i j | j == 1 = i
+                | otherwise = i ^ j + sumaInterna i (j-1)
+-------------
+
+--  Ej 14  --
+sumaPotencias :: Int -> Int -> Int -> Int
+sumaPotencias q n m = q ^ (combinacionesDeSuma n m)
+
+combinacionesDeSuma :: Int -> Int -> Int
+combinacionesDeSuma n m | n == 1 = sumaAB n m
+                        | otherwise = sumaAB n m + combinacionesDeSuma (n-1) m
+
+sumaAB :: Int -> Int -> Int
+sumaAB a b | b == 1 = a + b
+           | otherwise = a + b + sumaAB a (b-1)
+-------------
+
+--  Ej 15  --
+sumaRacionales :: Int -> Int -> Float
+sumaRacionales n m | n == 1 = sumaRacInterna n m
+                   | otherwise = sumaRacInterna n m + sumaRacionales (n-1) m
+
+sumaRacInterna :: Int -> Int -> Float
+sumaRacInterna p q | q == 1 = fromIntegral p / fromIntegral q
+                    | otherwise = fromIntegral p / fromIntegral q + sumaRacInterna p (q-1)
+-------------
+
+--  Ej 16  --
+-- a)
+menorDivisor :: Int -> Int
+menorDivisor n = buscaDivisorDesde n 2
+
+buscaDivisorDesde :: Int -> Int -> Int
+buscaDivisorDesde n k | k == n = n
+                      | mod n k == 0 = k
+                      | otherwise = buscaDivisorDesde n (k+1)
+
+-- b)
+--esPrimo :: Int -> Bool
