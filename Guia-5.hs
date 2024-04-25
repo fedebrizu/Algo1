@@ -147,12 +147,10 @@ contarPalabras (x:xs) | x == ' ' = 1 + contarPalabras xs
                       | otherwise = contarPalabras xs
 
 -- c)
-{-
 palabras :: [Char] -> [[Char]]
-palabras [x] = [[x]]
-palabras (x:xs) | x /= ' ' = [[x]] ++ palabras xs
-                | otherwise = palabras xs
--}
+palabras [] = []
+palabras (x:xs) | x == ' ' = [] ++ palabras xs
+                | otherwise = [[x]] ++ palabras xs
 
 -- d)
 {-
@@ -160,3 +158,23 @@ palabraMasLarga :: [Char] -> [Char]
 palabraMasLarga [] = []
 palabraMasLarga (x:y:xs) | 
 -}
+
+-- e)
+aplanar :: [[Char]] -> [Char]
+aplanar [] = []
+aplanar (x:xs) = x ++ aplanar xs
+
+-- f)
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [x] = x
+aplanarConBlancos (x:xs) = x ++ [' '] ++ aplanarConBlancos xs
+
+-- g)
+aplanarConNBlancos :: [[Char]] -> Int -> [Char]
+aplanarConNBlancos [x] _ = x
+aplanarConNBlancos (x:xs) n = x ++ completarBlancos n ++ aplanarConNBlancos xs n
+
+completarBlancos :: Int -> [Char]
+completarBlancos 0 = []
+completarBlancos n = [' '] ++ completarBlancos (n-1)
+------------
