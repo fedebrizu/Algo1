@@ -142,22 +142,36 @@ sacarBlancosRepetidos (x:y:xs) | x == ' ' && y == ' ' = sacarBlancosRepetidos (q
 
 -- b)
 contarPalabras :: [Char] -> Int
-contarPalabras [] = 1
-contarPalabras (x:xs) | x == ' ' = 1 + contarPalabras xs
+contarPalabras [] = 0
+contarPalabras (x:xs) | pertenece ' ' (x:xs) == False = 1
+                      | x == ' ' = 1 + contarPalabras xs
                       | otherwise = contarPalabras xs
 
 -- c)
 palabras :: [Char] -> [[Char]]
 palabras [] = []
-palabras (x:xs) | x == ' ' = [] ++ palabras xs
-                | otherwise = [[x]] ++ palabras xs
+palabras (x:xs) = [primeraPalabra (x:xs)] ++ palabras (quitarPrimerasNPalabras (x:xs) 1)
+
+primeraPalabra :: [Char] -> [Char]
+primeraPalabra [] = []
+primeraPalabra (x:xs) | pertenece ' ' (x:xs) == False = (x:xs)
+                      | x == ' ' = []
+                      | otherwise = [x] ++ primeraPalabra xs
+
+quitarPrimerasNPalabras :: [Char] -> Int -> [Char]
+quitarPrimerasNPalabras [] _ = [] 
+quitarPrimerasNPalabras (x:xs) n | n >= contarPalabras (x:xs) = []
+                                 | n == 0 = (x:xs)
+                                 | x == ' ' = quitarPrimerasNPalabras xs (n-1)
+                                 | otherwise = quitarPrimerasNPalabras xs n
+------------
 
 -- d)
-{-
 palabraMasLarga :: [Char] -> [Char]
 palabraMasLarga [] = []
-palabraMasLarga (x:y:xs) | 
--}
+palabraMasLarga lista | contarPalabras lista == 1 = quitar ' ' lista
+                      | longitud (primeraPalabra lista) >= longitud (primeraPalabra (quitarPrimerasNPalabras lista 1)) = palabraMasLarga ((primeraPalabra lista) ++ [' '] ++ quitarPrimerasNPalabras lista 2)
+                      | otherwise = palabraMasLarga (quitarPrimerasNPalabras lista 1)
 
 -- e)
 aplanar :: [[Char]] -> [Char]
@@ -177,4 +191,31 @@ aplanarConNBlancos (x:xs) n = x ++ completarBlancos n ++ aplanarConNBlancos xs n
 completarBlancos :: Int -> [Char]
 completarBlancos 0 = []
 completarBlancos n = [' '] ++ completarBlancos (n-1)
+------------
+
+--  Ej 5  --
+-- 1)
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada [x] = [x]
+sumaAcumulada (x:y:xs) = [x] ++ sumaAcumulada ((x+y):xs)
+
+-- 2)
+descomponerEnPrimos :: [Int] -> [[Int]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos (x:xs) = (descomposicionInterna x) : descomponerEnPrimos xs
+
+descomposicionInterna :: Int -> [Int]
+descomposicionInterna n | esPrimo n == True = [n]
+                        | otherwise = [menorDivisor n] ++ descomposicionInterna (div n (menorDivisor n))
+--aux de guia 4
+menorDivisor :: Int -> Int --sin contar el 1
+menorDivisor n = primerDivisorDesde n 2
+--aux de guia 4
+primerDivisorDesde :: Int -> Int -> Int -- devuelve el primer divisor que encuentre de n, desde k (con k<=n)
+primerDivisorDesde n k | k == n = n
+                       | mod n k == 0 = k
+                       | otherwise = primerDivisorDesde n (k+1)
+--aux de guia 4
+esPrimo :: Int -> Bool
+esPrimo n = menorDivisor n == n
 ------------
