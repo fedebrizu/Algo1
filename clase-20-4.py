@@ -1,8 +1,23 @@
+"""
+# EJ 1
+def imprimir_hola_mundo ():
+    print("¡Hola Mundo!")
+imprimir_hola_mundo()
+"""
+"""
+# EJ 2
+def imprimir_un_verso ():
+    print ("Sin destino y maniatado\nNi la suerte ni el pecado\nYa ni dios le cree a dios,\nSolo pido estar con vos")
+imprimir_un_verso ()
+"""
+
+
+
+"""
 #problema suma total (in s:seq<Z>) : Z {
 #requiere: {True}
 #asegura: {res es la suma de todos los elementos de s}
 #}
-"""
 def suma_total_for(s: list[int]) -> int:
     suma: int = 0
     for i in s:
@@ -10,6 +25,7 @@ def suma_total_for(s: list[int]) -> int:
     return suma
 print (suma_total_for([2,4,4]))
 """
+
 """
 def suma_total_while(s: list[int]) -> int:
     suma: int = 0
@@ -19,6 +35,8 @@ def suma_total_while(s: list[int]) -> int:
         i+=1
     return suma
 print (suma_total_while([2,4,4]))
+"""
+
 """
 #problema pertenece (in s:seq<Z>, in e: Z) : Bool {
 #requiere: {True}
@@ -31,8 +49,9 @@ def pertenece_1 (s:list[int], e:int) -> bool:
             return True
     return False
 #print(pertenece_1([1,2,3,4,5], 1))
+"""
 
-""""
+"""
 def pertenece_2 (s:list[int], e:int) -> bool:
     lo_encontre: bool = False
     for i in s:
@@ -41,6 +60,7 @@ def pertenece_2 (s:list[int], e:int) -> bool:
     return lo_encontre
 print(pertenece_2([1,2,3,4,5], 1))
 """
+
 """
 def pertenece_3 (s:list[int], e:int) -> bool:
     lo_encontre: bool = False
@@ -52,6 +72,7 @@ def pertenece_3 (s:list[int], e:int) -> bool:
     return lo_encontre
 print(pertenece_3([1,2,3,4,5], 6))
 """
+
 """
 def pertenece_4 (s:list[int], e:int) -> bool:
     lo_encontre: bool = False
@@ -61,6 +82,7 @@ def pertenece_4 (s:list[int], e:int) -> bool:
     return lo_encontre
 print(pertenece_4([1,2,3,4,5], 8))
 """
+
 """
 def fortaleza_de_una_contra (cont:str) -> str:
     seguridad:str = "Amarillo"
@@ -85,6 +107,7 @@ def fortaleza_de_una_contra (cont:str) -> str:
     return seguridad
 print (fortaleza_de_una_contra("123456aAl"))
 """
+
 """
 def pertenece_a_cada_uno_v2 (s:list[list[int]], e:int, res:list[bool]):
     res.clear
