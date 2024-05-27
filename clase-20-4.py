@@ -1,16 +1,89 @@
+import math
 """
-# EJ 1
+# EJ 1.1
 def imprimir_hola_mundo ():
     print("¡Hola Mundo!")
 imprimir_hola_mundo()
 """
 """
-# EJ 2
+# EJ 1.2
 def imprimir_un_verso ():
     print ("Sin destino y maniatado\nNi la suerte ni el pecado\nYa ni dios le cree a dios,\nSolo pido estar con vos")
 imprimir_un_verso ()
 """
+"""
+#EJ 1.3
+def raizDe2():
+    print(round(math.sqrt(2),3))
+raizDe2()
+"""
 
+"""
+#EJ 1.4
+def factorial_de_dos():
+    print (2)
+factorial_de_dos()
+"""
+"""
+#EJ 1.5
+def perimetro():
+    print (2 * math.pi)
+perimetro()
+"""
+
+"""
+#EJ 2.1
+def imprimir_saludo(nombre:str):
+    print("Hola" + ' ' + nombre)
+imprimir_saludo("nombre")
+"""
+
+"""
+#EJ 2.2
+def raiz_cuadrada_de(numero:int):
+    print(math.sqrt(numero))
+raiz_cuadrada_de(2)
+"""
+
+"""
+#EJ 2.3
+def fahrenheit_a_celcius(t:float) -> float:
+    return ((t - 32) * 5) / 9
+print (fahrenheit_a_celcius (32.0))
+"""
+
+"""
+#EJ 2.4
+def imprimir_dos_veces (estribillo:str):
+    print (estribillo * 2)
+imprimir_dos_veces ("...")
+"""
+
+"""
+#EJ 2.5
+def es_multiplo_de(n:int, m:int) -> bool:
+    veo_multiplicidad:bool = False
+    if (n % m == 0):
+        veo_multiplicidad = True
+    return veo_multiplicidad
+print(es_multiplo_de (8, 2))
+"""
+
+"""
+#EJ 2.6
+def es_par(numero:int):
+    if es_multiplo_de (numero, 2) == True:
+        print("Es par")
+    else:
+        print("Es impar")
+es_par(8)
+"""
+
+
+#EJ 2.7
+def cantidad_de_pizzas (comensales:int, min_cant_de_porciones) -> int:
+    return ceil(comensales * min_cant_de_porciones / 8)
+print cantidad_de_pizzas (3, 7)
 
 
 """
