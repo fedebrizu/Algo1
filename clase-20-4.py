@@ -1,15 +1,15 @@
 import math
 """
 # EJ 1.1
-def imprimir_hola_mundo ():
+def imprimir_hola_mundo():
     print("¡Hola Mundo!")
 imprimir_hola_mundo()
 """
 """
 # EJ 1.2
-def imprimir_un_verso ():
-    print ("Sin destino y maniatado\nNi la suerte ni el pecado\nYa ni dios le cree a dios,\nSolo pido estar con vos")
-imprimir_un_verso ()
+def imprimir_un_verso():
+    print("Sin destino y maniatado\nNi la suerte ni el pecado\nYa ni dios le cree a dios,\nSolo pido estar con vos")
+imprimir_un_verso()
 """
 """
 #EJ 1.3
@@ -21,13 +21,13 @@ raizDe2()
 """
 #EJ 1.4
 def factorial_de_dos():
-    print (2)
+    print(2)
 factorial_de_dos()
 """
 """
 #EJ 1.5
 def perimetro():
-    print (2 * math.pi)
+    print(2 * math.pi)
 perimetro()
 """
 
@@ -49,14 +49,14 @@ raiz_cuadrada_de(2)
 #EJ 2.3
 def fahrenheit_a_celcius(t:float) -> float:
     return ((t - 32) * 5) / 9
-print (fahrenheit_a_celcius (32.0))
+print(fahrenheit_a_celcius (32.0))
 """
 
 """
 #EJ 2.4
-def imprimir_dos_veces (estribillo:str):
-    print (estribillo * 2)
-imprimir_dos_veces ("...")
+def imprimir_dos_veces(estribillo:str):
+    print(estribillo * 2)
+imprimir_dos_veces("...")
 """
 
 """
@@ -72,18 +72,57 @@ print(es_multiplo_de (8, 2))
 """
 #EJ 2.6
 def es_par(numero:int):
-    if es_multiplo_de (numero, 2) == True:
+    if es_multiplo_de(numero, 2) == True:
         print("Es par")
     else:
         print("Es impar")
 es_par(8)
 """
 
-
+"""
 #EJ 2.7
-def cantidad_de_pizzas (comensales:int, min_cant_de_porciones) -> int:
-    return ceil(comensales * min_cant_de_porciones / 8)
-print cantidad_de_pizzas (3, 7)
+def cantidad_de_pizzas(comensales:int, min_cant_de_porciones) -> int:
+    return math.ceil(comensales * min_cant_de_porciones / 8)
+print(cantidad_de_pizzas (5, 7))
+"""
+
+"""
+#EJ 3.1
+def alguno_es_0(x:float, y:float) -> bool:
+    hay_un_cero:bool = False
+    hay_un_cero = (x + y == x | y)
+    return hay_un_cero
+print(alguno_es_0(0, 5))
+"""
+
+"""
+#EJ 3.2
+def ambos_son_0(x:float, y:float) -> bool:
+    ambos_ceros:bool = False
+    ambos_ceros = (x + y == x) & (x + y == y)
+    return ambos_ceros
+print(ambos_son_0(0, 5))
+"""
+
+"""
+#EJ 3.3
+def es_nombre_largo(nombre:str) -> bool:
+    nombre_largo:bool = False
+    nombre_largo = (len(nombre) >= 3) & (len(nombre) <= 8)
+    return nombre_largo
+print(es_nombre_largo("Federico"))
+"""
+
+"""
+#EJ 3.4
+def es_bisiesto(n:int) -> bool:
+    tiene_366_dias:bool = False
+    tiene_366_dias = ((n % 4 == 0) & (n % 100 != 0)) | (n % 400 == 0)
+    return tiene_366_dias
+print(es_bisiesto(700))
+"""
+
+#EJ 4.1
 
 
 """
