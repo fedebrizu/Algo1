@@ -122,8 +122,93 @@ def es_bisiesto(n:int) -> bool:
 print(es_bisiesto(700))
 """
 
+"""
 #EJ 4.1
+def peso_pino(altura:float) -> float:
+    peso:float = 0
+    if (altura < 300):
+        peso = 3 * altura
+    else:
+        peso = 900 + 2 * (altura - 300)
+    return peso
 
+#EJ 4.2
+def es_peso_util(peso:float) -> bool:
+    peso_util:bool = False
+    if ((peso >= 400) & (peso <= 1000)):
+        peso_util = True
+    return peso_util
+
+#EJ 4.3
+def sirve_pino_extended_edition(altura:float) -> bool:
+    sirve:bool = False
+    peso:float = 0
+    
+    if (altura < 300):
+        peso = 3 * altura
+    else:
+        peso = 900 + 2 * (altura - 300)
+        
+    if ((peso >= 400) & (peso <= 1000)):
+        sirve = True
+    return sirve
+
+#EJ 4.4
+def sirve_pino_resumida(altura:float) -> bool:
+    sirve:bool = False
+    sirve = es_peso_util(peso_pino(altura))
+    return sirve
+print(sirve_pino_resumida(1000))
+"""
+
+"""
+#EJ 6.1
+def cuenta_hasta_diez():
+    i:int = 1
+    while i <= 10:
+        print(i)
+        i += 1
+cuenta_hasta_diez()
+"""
+
+"""
+#EJ 6.2
+def pares_entre_10_y_40():
+    i:int = 10
+    while i <= 40:
+        print(i)
+        i += 2
+pares_entre_10_y_40()
+"""
+
+"""
+#EJ 6.3
+def eco():
+    i:int = 1
+    while i <= 10:
+        print("eco")
+        i += 1
+eco()
+"""
+
+"""
+#EJ 6.4
+def cuenta_despegue(contador:int):
+    while contador > 0:
+        print(contador)
+        contador -= 1
+    print("Despegue")
+cuenta_despegue(5)
+"""
+
+"""
+#EJ 6.5
+def viaje_al_pasado(partida:int, llegada:int):
+    while partida > llegada:
+        partida -= 1
+        print("Viajó un año al pasado, estamos en el año", (partida))
+viaje_al_pasado(5, 1)
+"""
 
 """
 #problema suma total (in s:seq<Z>) : Z {
